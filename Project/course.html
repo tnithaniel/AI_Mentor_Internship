@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Details - SkillUp</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">SkillUp Academy</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Courses</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="container">
+    <div id="content" class="course-detail-box"></div>
+    <a href="index.html" class="back-link">← Back to Courses</a>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 SkillUp Academy</p>
+    </div>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const courseId = params.get("id");
+
+    const courses = {
+      web: {
+        title: "Web Development",
+        description: "Learn how to create websites using HTML, CSS, JavaScript, and frameworks like Bootstrap and React. By the end of this course, you'll be able to build stunning responsive websites from scratch.",
+        tags: ["HTML", "CSS", "JavaScript", "Responsive Design"]
+      },
+      python: {
+        title: "Python Programming",
+        description: "This course covers the basics to advanced Python concepts including loops, functions, file handling, OOPs, modules, and real-world projects.",
+        tags: ["Python Basics", "OOPs", "Automation"]
+      },
+      cyber: {
+        title: "Cybersecurity Basics",
+        description: "Dive into the fundamentals of cybersecurity including network attacks, ethical hacking, malware detection, and protection techniques.",
+        tags: ["Networking", "Hacking", "Security Tools"]
+      },
+      data: {
+        title: "Data Science Essentials",
+        description: "You will explore data analysis using Pandas, NumPy, and visualization libraries like Matplotlib and Seaborn. A perfect intro to ML and statistics.",
+        tags: ["Data Analysis", "Visualization", "Python"]
+      }
+    };
+
+    const course = courses[courseId];
+    const contentDiv = document.getElementById("content");
+
+    if (course) {
+      const tagsHtml = course.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+      contentDiv.innerHTML = `
+        <h2>${course.title}</h2>
+        <p>${course.description}</p>
+        <div class="tags">${tagsHtml}</div>
+      `;
+    } else {
+      contentDiv.innerHTML = "<p>Course not found.</p>";
+    }
+  </script>
+</body>
+</html>
